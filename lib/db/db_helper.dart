@@ -58,10 +58,11 @@ class DBHelper {
   }
 
 //Delete the whole database
-  static Future<void> deleteDB() async {
-    String path = await getDatabasesPath() + 'tasks.db';
-    await deleteDatabase(path);
-    print('delted');
+  static Future<int> deleteAllDB() async {
+    // String path = await getDatabasesPath() + 'tasks.db';
+    return await database!.delete('tasks');
+
+    print('deleted');
   }
 
 //

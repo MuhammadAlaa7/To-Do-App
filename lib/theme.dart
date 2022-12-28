@@ -74,7 +74,6 @@ TextStyle get titleStyle {
     textStyle: TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.bold,
-      color: Get.isDarkMode ? Colors.white : Colors.black,
     ),
   );
 }

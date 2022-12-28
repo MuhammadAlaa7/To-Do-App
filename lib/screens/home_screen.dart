@@ -9,16 +9,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_2/controller/controller.dart';
 import 'package:todo_2/screens/task_screen.dart';
-import 'package:todo_2/services/theme_service.dart';
 import 'package:todo_2/theme.dart';
 import 'package:todo_2/widgets/custom_button.dart';
 import 'package:todo_2/widgets/task_tile.dart';
 
+import '../db/db_helper.dart';
 import '../module/task.dart';
 import '../widgets/bottom_sheet_item.dart';
 
 class HomeScreen extends StatelessWidget {
-  TaskController controller = Get.find();
+  final TaskController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,6 @@ class HomeScreen extends StatelessWidget {
           builder: (c) => IconButton(
             onPressed: () {
               controller.changeTheme();
-              // });
             },
             icon: Icon(
               Get.isDarkMode ? Icons.nightlight_round : Icons.wb_sunny_rounded,
@@ -36,6 +35,20 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         actions: [
+          GetBuilder<TaskController>(
+            builder: (x) => IconButton(
+              onPressed: () async {
+                controller.deleteAll();
+              },
+              icon: Icon(
+                Icons.delete_forever_rounded,
+                size: 30,
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
           CircleAvatar(
             backgroundImage: AssetImage('assets/images/person.jpeg'),
             radius: 24,
@@ -129,22 +142,26 @@ class HomeScreen extends StatelessWidget {
   showTasks() {
     return GetBuilder<TaskController>(
       builder: (c) => Expanded(
-        /*
-    GetBuilder<TaskController>(
-        builder: (c) {
-          log('selected data is ${DateFormat.yMd().format(c.selectedDate)}');
-          return
-    */
-
         child: controller.tasksList.isNotEmpty
             ? ListView.builder(
                 itemBuilder: (ctx, int index) {
                   Task task = controller.tasksList[index];
-                  /////////////////////////// /////////////////////////////////////////////////////////////////////////////////////////////////
+
                   if (task.repeat == 'Daily' ||
                       task.date ==
-                          DateFormat.yMd().format(controller.selectedDate)) {
-                    // log('task date is ${task.date}');
+                          DateFormat.yMd().format(controller.selectedDate) ||
+                      (task.repeat == 'Weekly' &&
+                          controller.selectedDate
+                                      .difference(
+                                          DateFormat.yMd().parse(task.date!))
+                                      .inDays %
+                                  7 ==
+                              0) ||
+                      (task.repeat == 'Monthly' &&
+                          controller.selectedDate.day ==
+                              DateFormat.yMd().parse(task.date!).day)) {
+                    // here : weekly means that the difference between the selected date and the accual date of the task must be 7 days
+                    // here : Monthly means that that day in the selected date must equals to the day of the task tade => the same day of each month
                     return AnimationConfiguration.staggeredList(
                       position: index,
                       duration: const Duration(milliseconds: 700),
@@ -221,12 +238,14 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 5,
             ),
             task.isCompleted == 1
                 ? Container()
                 : bottomSheetItem(
-                    describe: 'complete',
+                    color: primaryClr,
+                    isClose: false,
+                    //  describe: 'complete',
                     context: context,
                     label: 'Complete Task',
                     onTap: () {
@@ -234,19 +253,19 @@ class HomeScreen extends StatelessWidget {
                       Get.back();
                     }),
             bottomSheetItem(
-                describe: 'delete',
+                isClose: false,
+                color: Colors.red[300]!,
                 context: context,
                 label: 'Delete Task',
                 onTap: () {
                   controller.deleteTask(task);
                   Get.back();
                 }),
-            Divider(
-              thickness: 2,
-              color: Get.isDarkMode ? Colors.white : Colors.black,
+            const SizedBox(
+              height: 30,
             ),
             bottomSheetItem(
-                describe: '',
+                isClose: true,
                 context: context,
                 label: 'Cancel',
                 onTap: () {

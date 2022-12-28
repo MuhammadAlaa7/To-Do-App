@@ -57,7 +57,7 @@ class TaskController extends GetxController {
   List<int> reminderList = [5, 10, 15, 20, 25, 30];
 
   String selectedRepeat = 'None';
-  List<String> repeatList = ['None', 'Daily', 'Weekly', 'monthly'];
+  List<String> repeatList = ['None', 'Daily', 'Weekly', 'Monthly'];
 
   int selectedColor = 0;
 
@@ -110,5 +110,11 @@ class TaskController extends GetxController {
       getTasks();
       update();
     });
+  }
+
+  void deleteAll() async {
+    await DBHelper.deleteAllDB();
+    update();
+    getTasks();
   }
 }
