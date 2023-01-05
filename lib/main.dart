@@ -40,6 +40,6 @@ class MyApp extends StatelessWidget {
 // it a chance and search for it you will find the answer for sure 
 /*
 (1) - if you are building the app on the phone and it gave you the error >> no such a table in the database\
- >> do this in the terminal >>>> flutter clean and >>>> aflutter pub get 
+ >> do this in the terminal >>>> flutter clean and >>>> flutter pub get 
 
-*/ 
+*/  

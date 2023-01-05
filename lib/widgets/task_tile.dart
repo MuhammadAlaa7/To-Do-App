@@ -24,6 +24,7 @@ class TaskTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(task.title ?? 'no title for this task', style: headline.copyWith(color: Colors.white,)),
                 Text(
                   task.date ?? 'no data for this task',
                   style: GoogleFonts.lato(
@@ -65,7 +66,7 @@ class TaskTile extends StatelessWidget {
                   height: 5.0,
                 ),
                 Text(
-                  task.note!,
+                  task.note ?? 'No note for this task',
                   style: GoogleFonts.lato(
                     textStyle: const TextStyle(
                       fontSize: 14,
