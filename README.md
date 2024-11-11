@@ -17,7 +17,7 @@ A beautiful and intuitive task management app built with Flutter. This app provi
 
  | emtpy tasks | editing tasks |
  |---------------|--------------|
- | ![adding task](screenshots/empty_tasks.png) | ![editing task ](screenshots/editing_task.png) |
+ | ![empty task](screenshots/empty_tasks.png) | ![editing task ](screenshots/edit_task.png) |
 
 ## Getting Started
 
