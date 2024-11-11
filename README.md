@@ -11,9 +11,13 @@ A beautiful and intuitive task management app built with Flutter. This app provi
 - **Date Selection:** Use an interactive timeline to pick task dates.
 
 ## Screenshots
-| Adding task  | light home  | dark home | emtpy tasks |
-|---------------|--------------|--------------| ----------- |
-| ![adding task](screenshots/adding_task.png) | ![light home ](screenshots/home_light.png) | ![dark home](screenshots/home_dark.png) | ![empty](screenshots/empty_tasks.png)
+| Adding task  | light home  | dark home |
+|---------------|--------------|--------------| 
+| ![adding task](screenshots/adding_task.png) | ![light home ](screenshots/home_light.png) | ![dark home](screenshots/home_dark.png) 
+
+ | emtpy tasks | editing tasks |
+ |---------------|--------------|
+ | ![adding task](screenshots/empty_tasks.png) | ![editing task ](screenshots/editing_task.png) |
 
 ## Getting Started
 
