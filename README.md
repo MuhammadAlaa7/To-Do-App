@@ -19,20 +19,6 @@ A beautiful and intuitive task management app built with Flutter. This app provi
  |---------------|--------------|
  | ![empty task](screenshots/empty_tasks.png) | ![editing task ](screenshots/edit_task.png)
 
-## Getting Started
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/task-manager-app.git
-    ```
-2. Install dependencies:
-    ```bash
-    flutter pub get
-    ```
-3. Run the app:
-    ```bash
-    flutter run
-    ```
 
 ## Dependencies
 - `get`: for state management and navigation
